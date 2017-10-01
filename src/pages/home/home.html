@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+      <button ion-button color="dark" (click)="startCapture()">Start Capture</button>
+      
+      <video controls="controls">
+        <source [src]="videoUrl" type="video/mp4">
+      </video>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
