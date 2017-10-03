@@ -10,9 +10,7 @@
 <ion-content padding>
 
       <button ion-button color="dark" (click)="startCapture()">Start Capture</button>
-      
-      <video controls="controls">
-        <source [src]="videoUrl" type="video/mp4">
-      </video>
+
+      <video #myvideo controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" width="300" height="500" class="videoPlayer"></video>      
 
 </ion-content>
