@@ -1,5 +1,5 @@
 import { Component , ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController , ToastController } from 'ionic-angular';
 
 import { MediaCapture , MediaFile , CaptureError } from '@ionic-native/media-capture';
 import { VideoPlayer } from '@ionic-native/video-player';
@@ -13,9 +13,10 @@ export class HomePage {
   @ViewChild('myvideo') myVideo: any;
   videoURL:any;
 
-  constructor(public navCtrl: NavController , private mediaCapture: MediaCapture , private base64 : Base64) {
+  constructor(public navCtrl: NavController , private mediaCapture: MediaCapture , private base64 : Base64 , public toastCtrl : ToastController ) {
 
   }
+
 
   startCapture(){
     this.mediaCapture.captureVideo().then((data: MediaFile[])=>{
@@ -27,8 +28,8 @@ export class HomePage {
           //Base64 Encoding started
           this.base64.encodeFile(this.videoURL).then((base64File: string) => {
             //Do something with base64File
-            console.log(base64File);
-            
+            //console.log(base64File);
+            this.showToast(base64File);
           },
           (err)=>{
             console.log(err);
@@ -41,5 +42,13 @@ export class HomePage {
       }, (err) => {
         alert('Error');
       });
+  }
+
+  showToast(base64File){
+    let toast = this.toastCtrl.create({
+      message: base64File,
+      duration: 5000
+    });
+    toast.present();          
   }
 }
